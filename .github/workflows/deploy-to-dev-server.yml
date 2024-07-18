@@ -80,4 +80,5 @@ jobs:
 
       - name: SSH and effect migration
         run: |
-          ssh -p 7822 -i ~/.ssh/id_rsa -t skillz@185.160.67.60 "cd nnpc/api/notification && php artisan migrate"
+          ssh -p 7822 -i ~/.ssh/id_rsa -t skillz@185.160.67.60 "cd nnpc/api/notification && php artisan migrate && php artisan db:seed --class=NotificationTaskSeeder
+"

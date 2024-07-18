@@ -29,7 +29,7 @@ class NotificationTaskFactory extends Factory
             'formbuilder_data_id' => $this->faker->numberBetween(1, 1000),
             'entity_id' => $this->faker->numberBetween(1, 1000),
             'entity_type' => $this->faker->randomElement(['customer', 'supplier']),
-            'user_id' => $this->faker->numberBetween(1, 1000),
+            'user_id' => $this->faker->numberBetween(1, 5),
             'processflow_id' => $this->faker->numberBetween(1, 1000),
             'processflow_step_id' => $this->faker->numberBetween(1, 1000),
             'title' => $this->faker->sentence(),
