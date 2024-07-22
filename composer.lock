@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66e5fa703817cf92dafd3a0e2b8ffe96",
+    "content-hash": "23c37cc8228ac7a65fdaea4765dac0b8",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -3982,12 +3982,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Skillz-systems/skills_user_service_package.git",
-                "reference": "8831e1479fb922100bc19872da91be0557ee46de"
+                "reference": "9c2b3e33fc1b30bcd4769d30ce8c8682fbf42708"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Skillz-systems/skills_user_service_package/zipball/8831e1479fb922100bc19872da91be0557ee46de",
-                "reference": "8831e1479fb922100bc19872da91be0557ee46de",
+                "url": "https://api.github.com/repos/Skillz-systems/skills_user_service_package/zipball/9c2b3e33fc1b30bcd4769d30ce8c8682fbf42708",
+                "reference": "9c2b3e33fc1b30bcd4769d30ce8c8682fbf42708",
                 "shasum": ""
             },
             "require": {
@@ -4005,7 +4005,7 @@
             "support": {
                 "source": "https://github.com/Skillz-systems/skills_user_service_package/tree/main"
             },
-            "time": "2024-04-12T13:07:55+00:00"
+            "time": "2024-07-22T12:35:56+00:00"
         },
         {
             "name": "swagger-api/swagger-ui",
@@ -9181,5 +9181,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
