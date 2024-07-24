@@ -9,9 +9,9 @@ use App\Models\NotificationTask;
 
 
 class NotificationTaskSeeder extends Seeder
-// {
-//     public function run(): void
-//     {
+{
+    public function run(): void
+    {
 //     NotificationTask::factory()
 //         ->count(50)
 //         ->create([
@@ -43,5 +43,5 @@ class NotificationTaskSeeder extends Seeder
 //             return str_pad(rand(1, 100), 3, '0', STR_PAD_LEFT);
 //         }, $selectedPattern);
 //         return 'https://ngml.skillzserver.com' . $route;
-//     }
+    }
 }
