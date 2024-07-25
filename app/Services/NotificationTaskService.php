@@ -81,11 +81,15 @@ class NotificationTaskService
      * @param mixed $status
      * @return Collection
      */
-    public function getTasksByUserIdAndStatus($userId, $status)
+    public function getTasksByUserIdAndStatus($userId, $status, $perPage)
     {
+        // return NotificationTask::where('user_id', $userId)
+        //     ->where('task_status', $status)
+        //     ->get();
         return NotificationTask::where('user_id', $userId)
-            ->where('task_status', $status)
-            ->get();
+        ->where('task_status', $status)
+        ->orderBy('created_at', 'desc')
+        ->paginate($perPage);
     }
     /**
      * Validate the data for updating a task.

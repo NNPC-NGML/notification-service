@@ -66,11 +66,18 @@ class TaskController extends Controller
      * )
      */
 
-    public function show(int $id, int $paginate = 20): JsonResource
+    // public function show(int $id, int $paginate = 20): JsonResource
+    // {
+    //     $tasks = $this->service->getTasksByUserIdAndStatus($id, NotificationTask::PENDING, $paginate);
+    //     return new TaskCollection($tasks);
+    // }
+
+
+     public function show(Request $request, int $id): JsonResource
     {
-        $tasks = $this->service->getTasksByUserIdAndStatus($id, NotificationTask::PENDING);
+        $perPage = $request->query('per_page', 20);
+        $tasks = $this->service->getTasksByUserIdAndStatus($id, NotificationTask::PENDING, $perPage);
         return new TaskCollection($tasks);
     }
-
 
 }
