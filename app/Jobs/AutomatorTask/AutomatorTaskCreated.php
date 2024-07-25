@@ -4,12 +4,13 @@ namespace App\Jobs\AutomatorTask;
 
 // use App\Models\Designation;
 use Illuminate\Bus\Queueable;
-use Skillz\Nnpcreusable\Service\AutomatorTaskService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Services\NotificationTaskService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Skillz\Nnpcreusable\Service\AutomatorTaskService;
 
 class AutomatorTaskCreated implements ShouldQueue
 {
@@ -40,8 +41,14 @@ class AutomatorTaskCreated implements ShouldQueue
      */
     public function handle(): void
     {
-        $service = new AutomatorTaskService();
-        $data = $this->data;
-        $service->create($data);
+
+        $service = new NotificationTaskService();
+
+        $service->create($this->data);
+    
+    }
+    public function getData(): array
+    {
+        return $this->data;
     }
 }
