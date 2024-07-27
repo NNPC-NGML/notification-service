@@ -5,10 +5,11 @@ namespace App\Services;
 use App\Models\Task;
 use App\Services\UserService;
 use App\Services\CustomerService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use App\Jobs\CommunicationsService\EmailJob;
-use App\Jobs\NotificationTask\NotificationTaskCreated;
 use Skillz\Nnpcreusable\Models\NotificationTask;
+use App\Jobs\NotificationTask\NotificationTaskCreated;
 
 /**
  * TaskAutomator is a service class responsible for automating tasks and sending notifications.
@@ -46,6 +47,7 @@ class NotificationTaskAutomator
                     foreach ($notificationTasksQueue as $queue) {
                         $queue = trim($queue);
                         if (!empty($queue)) {
+                            Log::info("Dispatching NotificationTask event to queue: " . $queue);
                             NotificationTaskCreated::dispatch($emailData)->onQueue($queue);
                         }
                     }
