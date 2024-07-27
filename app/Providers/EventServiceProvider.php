@@ -30,11 +30,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \App::bindMethod(UserCreated::class . '@handle', fn($job) => $job->handle());
-        \App::bindMethod(UserUpdated::class . '@handle', fn($job) => $job->handle());
-        \App::bindMethod(UserDeleted::class . '@handle', fn($job) => $job->handle());
-        \App::bindMethod(TaskCreated::class . '@handle', fn($job) => $job->handle());
-        \App::bindMethod(CustomerCreated::class . '@handle', fn($job) => $job->handle());
     }
 
     /**
