@@ -40,8 +40,18 @@ class NotificationTaskAutomator
     {
        
         $emailData = $this->prepareEmailData($request);
-        NotificationTaskCreated::dispatch($emailData)->onQueue(config("nnpcreusable.NOTIFICATION_TASK_CREATED"));
-        // EmailJob::dispatch($emailData);
+
+        $notificationTasksQueue = config("nnpcreusable.NOTIFICATION_TASK_CREATED");
+                if (is_array($notificationTasksQueue) && !empty($notificationTasksQueue)) {
+                    foreach ($notificationTasksQueue as $queue) {
+                        $queue = trim($queue);
+                        if (!empty($queue)) {
+                            NotificationTaskCreated::dispatch($emailData)->onQueue($queue);
+                        }
+                    }
+                } else{
+                    NotificationTaskCreated::dispatch($emailData)->onQueue("communication_queue");
+                }
     }
 
     /**
