@@ -11,15 +11,6 @@
                 "operationId": "fd3677b5b24695d7b801715869b1357c",
                 "parameters": [
                     {
-                        "name": "id",
-                        "in": "path",
-                        "description": "User ID",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
                         "name": "paginate",
                         "in": "query",
                         "description": "Pagination count",
@@ -80,15 +71,14 @@
                     "end_time": {
                         "type": "string",
                         "format": "date"
+                    },
+                    "task_status": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
             }
         }
     },
-    "tags": [
-        {
-            "name": "Tasks"
-        }
-    ]
+    "tags": []
 }
