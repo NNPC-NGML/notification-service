@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\NotificationTask;
 use Illuminate\Support\Facades\Validator;
+use App\Services\NotificationTaskAutomator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -34,6 +35,11 @@ class NotificationTaskService
     {
         $validatedData = $this->validateCreateData($request);
         $task = NotificationTask::create($validatedData);
+        // dispatch to communication service 
+        if ($task) {
+            $automationService = new NotificationTaskAutomator(new UserService());
+            $automationService->send($task->toArray());
+        }
         return $task;
     }
 
@@ -69,7 +75,7 @@ class NotificationTaskService
      * @param int $userId
      * @return Collection|null
      */
-    public function getTasksByUserId(int $userId, ): ?Collection
+    public function getTasksByUserId(int $userId,): ?Collection
     {
         return NotificationTask::where('user_id', $userId)->get();
     }
@@ -87,9 +93,9 @@ class NotificationTaskService
         //     ->where('task_status', $status)
         //     ->get();
         return NotificationTask::where('user_id', $userId)
-        ->where('task_status', $status)
-        ->orderBy('created_at', 'desc')
-        ->paginate($perPage);
+            ->where('task_status', $status)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
     }
     /**
      * Validate the data for updating a task.
