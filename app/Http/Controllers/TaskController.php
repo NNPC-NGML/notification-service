@@ -28,13 +28,7 @@ class TaskController extends Controller
      * @OA\Get(
      *     path="/tasks/{id}",
      *     summary="Get tasks by user ID and status",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="User ID",
-     *         required=true,
-     *         @OA\Schema(type="integer")
-     *     ),
+     *     
      *     @OA\Parameter(
      *         name="paginate",
      *         in="query",
@@ -73,11 +67,11 @@ class TaskController extends Controller
     // }
 
 
-     public function show(Request $request, int $id): JsonResource
+    public function show(Request $request): JsonResource
     {
+        $id = auth()->id();
         $perPage = $request->query('per_page', 20);
         $tasks = $this->service->getTasksByUserIdAndStatus($id, NotificationTask::PENDING, $perPage);
         return new TaskCollection($tasks);
     }
-
 }

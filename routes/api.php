@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('scope.user')->group(function () {
-    Route::get('/tasks/{id}', [TaskController::class, 'show']);
+    Route::get('/tasks', [TaskController::class, 'show']);
     Route::get('/tasks/filters/{id}', [TaskController::class, 'filter']);
     Route::get('/protected', function () {
         return response()->json(['message' => 'Access granted']);

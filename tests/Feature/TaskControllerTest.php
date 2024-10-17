@@ -26,7 +26,7 @@ class TaskControllerTest extends TestCase
 
         NotificationTask::factory(['user_id' => $this->user->id, 'task_status' => 0])->create();
 
-        $response = $this->getJson('/api/tasks/' . $this->user->id);
+        $response = $this->getJson('/api/tasks/');
 
         $response->assertStatus(200);
     }
@@ -37,7 +37,7 @@ class TaskControllerTest extends TestCase
 
         NotificationTask::factory(['user_id' => $this->user->id, 'task_status' => 0])->create();
 
-        $response = $this->getJson('/api/tasks/' . $this->user->id);
+        $response = $this->getJson('/api/tasks/');
 
         $response->assertStatus(401);
     }
@@ -46,10 +46,9 @@ class TaskControllerTest extends TestCase
         $this->actingAsAuthenticatedTestUser();
         NotificationTask::factory(['user_id' => $this->user->id, 'task_status' => NotificationTask::PENDING])->count(5)->create();
         NotificationTask::factory(['user_id' => $this->user->id, 'task_status' => NotificationTask::DONE])->count(5)->create();
-        $response = $this->getJson('/api/tasks/' . $this->user->id);
+        $response = $this->getJson('/api/tasks/');
         $response->assertStatus(200)
             ->assertJsonStructure(['data' => [['id', 'title', 'route', 'start_time', 'end_time', 'task_status']]]);
         $this->assertCount(5, $response->json('data'));
     }
-
 }
