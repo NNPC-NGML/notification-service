@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs\AutomatorService;
+namespace App\Jobs\Notification;
 
 use App\Services\NotificationTaskService;
 use Illuminate\Bus\Queueable;
@@ -9,32 +9,20 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class TaskCreated implements ShouldQueue
+class NotificationCreated implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private array $data;
-    private int $id;
 
 
     public function __construct(array $data)
     {
         $this->data = $data;
-        $this->id = $data['id'];
     }
 
 
-    public function handle(): void
-    {
-        $service = new NotificationTaskService();
-        $task = $service->show($this->id);
-
-        if (!$task) {
-            $service->create($this->data);
-        } else {
-            $service->update($this->data, $this->id);
-        }
-    }
+    public function handle(): void {}
 
     public function getData(): array
     {

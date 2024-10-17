@@ -7,6 +7,7 @@ use App\Services\UserService;
 use App\Services\CustomerService;
 use Illuminate\Support\Facades\Validator;
 use App\Jobs\CommunicationsService\EmailJob;
+use App\Jobs\Notification\NotificationCreated;
 
 /**
  * TaskAutomator is a service class responsible for automating tasks and sending notifications.
@@ -37,7 +38,9 @@ class NotificationTaskAutomator
     public function send(array $request): void
     {
         $emailData = $this->prepareEmailData($request);
-        EmailJob::dispatch($emailData);
+        //send to communication service , which would send send the email
+
+        NotificationCreated::dispatch($emailData)->onQueue("communication_queue");
     }
 
     /**

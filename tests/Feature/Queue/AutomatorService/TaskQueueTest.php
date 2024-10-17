@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Queue\AutomatorService;
 
+use App\Jobs\AutomatorTask\AutomatorTaskCreated;
 use App\Jobs\AutomatorService\TaskUpdated;
 use Tests\TestCase;
 use App\Models\Task;
@@ -36,13 +37,10 @@ class TaskQueueTest extends TestCase
             'end_time' => '2023-05-20',
             'task_status' => 0,
         ];
-        TaskCreated::dispatch($request);
+        AutomatorTaskCreated::dispatch($request);
 
-        Queue::assertPushed(TaskCreated::class, function ($job) use ($request) {
+        Queue::assertPushed(AutomatorTaskCreated::class, function ($job) use ($request) {
             return $job->getData() == $request;
         });
     }
-
-
-
 }
