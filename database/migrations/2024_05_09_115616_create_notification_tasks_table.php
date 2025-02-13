@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->integer("formbuilder_data_id")->nullable()->comment("This column would hold the formbuilder data id, which can comes from processflow service or from formbuilder service");
             $table->integer("entity_id")->nullable()->comment("This column would hold the customer id or supplier , which can comes from  formbuilder service or from automator service");
             $table->string("entity_type")->nullable()->comment("This column helps us determine if the id entity is a customer or a supplier ");
+            $table->integer("entity_site_id")->nullable()->comment("This column would hold the customer site id or supplier site id , which can comes from  formbuilder service or from automator service");
             $table->integer("user_id")->nullable()->comment("This column would hold the user id, which can comes from  processflow service or from automator service");
             $table->integer("processflow_id")->nullable()->comment("This column would hold the processflow id, which can comes from  processflow service or from automator service");
             $table->integer("processflow_step_id")->nullable()->comment("This column would hold the processflow step id, which can comes from  processflow service or from automator service");
